@@ -37,7 +37,7 @@ end TOP;
 
 architecture Behavioral of TOP is
 
-component synchrzner is
+component synchrnzer is
         port(
             clk: in std_logic;
             async_in: in std_logic;
@@ -45,7 +45,13 @@ component synchrzner is
             reset: in std_logic
         );
     end component;
+    
 begin
-
+ inst_sincronizador1: synchrnzer port map(
+           clk=>'1',
+            async_in=>'1',
+            sync_out=>'1',
+            reset=>'0'
+        );
 
 end Behavioral;
