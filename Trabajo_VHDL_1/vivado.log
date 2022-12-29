@@ -2,10 +2,10 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Thu Dec 29 10:58:57 2022
-# Process ID: 9928
+# Start of session at: Thu Dec 29 11:29:59 2022
+# Process ID: 6520
 # Current directory: C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10028 C:\Users\UPM\Downloads\SED_22-23-main\SED_22-23-main\Trabajo_VHDL_1\Trabajo_VHDL_1.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9888 C:\Users\UPM\Downloads\SED_22-23-main\SED_22-23-main\Trabajo_VHDL_1\Trabajo_VHDL_1.xpr
 # Log file: C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/vivado.log
 # Journal file: C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1\vivado.jou
 # Running On: upm00162, OS: Windows, CPU Frequency: 2394 MHz, CPU Physical cores: 6, Host memory: 6404 MB
@@ -51,169 +51,13 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216:part0:2.0 availab
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
-INFO: [Project 1-313] Project file moved from 'C:/Users/UPM/Desktop/Trabajo_VHDL_1' since last save.
-INFO: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.gen/sources_1', nor could it be found using path 'C:/Users/UPM/Desktop/Trabajo_VHDL_1/Trabajo_VHDL_1.gen/sources_1'.
-CRITICAL WARNING: [Project 1-311] Could not find the file 'C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc', nor could it be found using path 'C:/Users/Nexys-4-DDR-Master.xdc'.
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.gen/sources_1'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
-open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1634.117 ; gain = 0.000
+open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1640.242 ; gain = 0.000
 update_compile_order -fileset sources_1
-file mkdir C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sim_1/new
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-close [ open C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sim_1/new/tb_Display_Control.vhd w ]
-add_files -fileset sim_1 C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sim_1/new/tb_Display_Control.vhd
-update_compile_order -fileset sim_1
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-close [ open C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sim_1/new/tb_FSM.vhd w ]
-add_files -fileset sim_1 C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sim_1/new/tb_FSM.vhd
-update_compile_order -fileset sim_1
-synth_design -rtl -rtl_skip_mlo -name rtl_1
-Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
-Starting synth_design
-Using part: xc7a100tcsg324-1
-Top: TOP
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
----------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1832.625 ; gain = 198.508
----------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'TOP' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:53]
-INFO: [Synth 8-3491] module 'SYNCHRNZR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:34' bound to instance 'inst_sincronizador1' of component 'SYNCHRNZR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:153]
-INFO: [Synth 8-638] synthesizing module 'SYNCHRNZR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'SYNCHRNZR' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:43]
-INFO: [Synth 8-3491] module 'DEBOUNCER' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:35' bound to instance 'inst_debouncer1' of component 'DEBOUNCER' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:160]
-INFO: [Synth 8-638] synthesizing module 'DEBOUNCER' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:42]
-INFO: [Synth 8-256] done synthesizing module 'DEBOUNCER' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:42]
-INFO: [Synth 8-3491] module 'EDGEDTCTR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:34' bound to instance 'inst_edgedtctr1' of component 'EDGEDTCTR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:166]
-INFO: [Synth 8-638] synthesizing module 'EDGEDTCTR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'EDGEDTCTR' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:43]
-INFO: [Synth 8-3491] module 'SYNCHRNZR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:34' bound to instance 'inst_sincronizador2' of component 'SYNCHRNZR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:174]
-INFO: [Synth 8-3491] module 'DEBOUNCER' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:35' bound to instance 'inst_debouncer2' of component 'DEBOUNCER' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:181]
-INFO: [Synth 8-3491] module 'EDGEDTCTR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:34' bound to instance 'inst_edgedtctr2' of component 'EDGEDTCTR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:187]
-INFO: [Synth 8-3491] module 'SYNCHRNZR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:34' bound to instance 'inst_sincronizador3' of component 'SYNCHRNZR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:195]
-INFO: [Synth 8-3491] module 'DEBOUNCER' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:35' bound to instance 'inst_debouncer3' of component 'DEBOUNCER' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:202]
-INFO: [Synth 8-3491] module 'EDGEDTCTR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:34' bound to instance 'inst_edgedtctr3' of component 'EDGEDTCTR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:208]
-INFO: [Synth 8-3491] module 'SYNCHRNZR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd:34' bound to instance 'inst_sincronizador4' of component 'SYNCHRNZR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:216]
-INFO: [Synth 8-3491] module 'DEBOUNCER' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd:35' bound to instance 'inst_debouncer4' of component 'DEBOUNCER' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:223]
-INFO: [Synth 8-3491] module 'EDGEDTCTR' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd:34' bound to instance 'inst_edgedtctr4' of component 'EDGEDTCTR' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:229]
-INFO: [Synth 8-3491] module 'counter' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd:38' bound to instance 'inst_sumador' of component 'counter' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:239]
-INFO: [Synth 8-638] synthesizing module 'counter' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd:48]
-WARNING: [Synth 8-614] signal 's_eleccion' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd:53]
-WARNING: [Synth 8-614] signal 'bits_venta' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd:53]
-INFO: [Synth 8-256] done synthesizing module 'counter' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd:48]
-INFO: [Synth 8-3491] module 'FSM' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM.vhd:36' bound to instance 'inst_fsmdinero' of component 'FSM' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:253]
-INFO: [Synth 8-638] synthesizing module 'FSM' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM.vhd:45]
-INFO: [Synth 8-256] done synthesizing module 'FSM' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM.vhd:45]
-INFO: [Synth 8-3491] module 'FSM_SW' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:36' bound to instance 'inst_fsmsw' of component 'FSM_SW' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:261]
-INFO: [Synth 8-638] synthesizing module 'FSM_SW' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:49]
-WARNING: [Synth 8-614] signal 'sw1' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:55]
-WARNING: [Synth 8-614] signal 'sw2' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:55]
-WARNING: [Synth 8-614] signal 'sw3' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:55]
-WARNING: [Synth 8-614] signal 'sw4' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:55]
-WARNING: [Synth 8-614] signal 'switches' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:55]
-INFO: [Synth 8-256] done synthesizing module 'FSM_SW' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd:49]
-INFO: [Synth 8-3491] module 'Display_Control' declared at 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd:36' bound to instance 'inst_display1' of component 'Display_Control' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:273]
-INFO: [Synth 8-638] synthesizing module 'Display_Control' [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd:45]
-WARNING: [Synth 8-614] signal 'num' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd:66]
-WARNING: [Synth 8-614] signal 'numero' is read in the process but is not in the sensitivity list [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd:66]
-INFO: [Synth 8-256] done synthesizing module 'Display_Control' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd:45]
-INFO: [Synth 8-256] done synthesizing module 'TOP' (0#1) [C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd:53]
-WARNING: [Synth 8-7129] Port Venerr[1] in module Display_Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Venerr[0] in module Display_Control is either unconnected or has no load
-WARNING: [Synth 8-7129] Port clk in module FSM_SW is either unconnected or has no load
-WARNING: [Synth 8-7129] Port reset in module FSM_SW is either unconnected or has no load
-WARNING: [Synth 8-7129] Port clk in module FSM is either unconnected or has no load
-WARNING: [Synth 8-7129] Port s_eleccion in module FSM is either unconnected or has no load
-WARNING: [Synth 8-7129] Port pushbutton[3] in module FSM is either unconnected or has no load
-WARNING: [Synth 8-7129] Port pushbutton[2] in module FSM is either unconnected or has no load
-WARNING: [Synth 8-7129] Port pushbutton[1] in module FSM is either unconnected or has no load
-WARNING: [Synth 8-7129] Port pushbutton[0] in module FSM is either unconnected or has no load
----------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1944.137 ; gain = 310.020
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Handling Custom Attributes
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1944.137 ; gain = 310.020
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1944.137 ; gain = 310.020
----------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1944.137 ; gain = 0.000
-INFO: [Project 1-570] Preparing netlist for logic optimization
-
-Processing XDC Constraints
-Initializing timing engine
-Parsing XDC File [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc]
-CRITICAL WARNING: [Designutils 20-1307] Command '©' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:267]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Terms' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:268]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Privacy' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:269]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Security' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:270]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Status' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:271]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Docs' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:272]
-CRITICAL WARNING: [Designutils 20-1307] Command 'Contact' is not supported in the xdc constraint file. [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc:273]
-Finished Parsing XDC File [C:/Users/UPM/Downloads/Nexys-4-DDR-Master.xdc]
-Completed Processing XDC Constraints
-
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1999.480 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
-
-RTL Elaboration Complete:  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 2053.332 ; gain = 419.215
-35 Infos, 19 Warnings, 7 Critical Warnings and 0 Errors encountered.
-synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2053.332 ; gain = 419.215
-launch_simulation
-Command: launch_simulation 
-INFO: [Vivado 12-12493] Simulation top is 'TOP'
-WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
-WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
-INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.sim/sim_1/behav/xsim'
-INFO: [SIM-utils-51] Simulation object is 'sim_1'
-INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
-INFO: [SIM-utils-54] Inspecting design source files for 'TOP' in fileset 'sim_1'...
-INFO: [USF-XSim-97] Finding global include files...
-INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
-INFO: [USF-XSim-2] XSim::Compile design
-INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.sim/sim_1/behav/xsim'
-"xvhdl --incr --relax -prj TOP_vhdl.prj"
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/DEBOUNCER.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DEBOUNCER'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/Display_Control.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'Display_Control'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/EDGEDTCTR.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'EDGEDTCTR'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'FSM'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM_SW.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'FSM_SW'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/SYNCHRNZR.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'SYNCHRNZR'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/counter.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'counter'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/TOP.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'TOP'
-INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
-INFO: [USF-XSim-3] XSim::Elaborate design
-INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.sim/sim_1/behav/xsim'
-"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot TOP_behav xil_defaultlib.TOP -log elaborate.log"
-Vivado Simulator v2022.1
-Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot TOP_behav xil_defaultlib.TOP -log elaborate.log 
-Using 2 slave threads.
-Starting static elaboration
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-ERROR: [XSIM 43-3249] File C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.srcs/sources_1/new/FSM.vhd, line 47. Unresolved signal "next_state" is multiply driven.
-INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
-INFO: [USF-XSim-99] Step results log file:'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.sim/sim_1/behav/xsim/elaborate.log'
-ERROR: [USF-XSim-62] 'elaborate' step failed with error(s). Please check the Tcl console output or 'C:/Users/UPM/Downloads/SED_22-23-main/SED_22-23-main/Trabajo_VHDL_1/Trabajo_VHDL_1.sim/sim_1/behav/xsim/elaborate.log' file for more information.
-ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
-launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 2075.305 ; gain = 0.000
-ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
 exit
-INFO: [Common 17-206] Exiting Vivado at Thu Dec 29 11:12:23 2022...
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 29 11:31:44 2022...
