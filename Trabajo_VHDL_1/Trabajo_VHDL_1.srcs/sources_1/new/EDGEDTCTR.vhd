@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 29.11.2022 15:33:12
+-- Create Date: 29.12.2022 10:39:36
 -- Design Name: 
--- Module Name: synchrnzer - Behavioral
+-- Module Name: EDGEDTCTR - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,26 +31,29 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity synchrnzer is
-    Port (
-        clk:in std_logic;
-        reset:in std_logic;
-        async_in: in std_logic;
-        sync_out:out std_logic
+entity EDGEDTCTR is
+    port (
+        clk : in std_logic;
+        reset: in std_logic;
+        sync_in : in std_logic;
+        edge : out std_logic
     );
-end synchrnzer;
+end EDGEDTCTR; 
 
-architecture Behavioral of synchrnzer is
-    signal sreg : std_logic_vector(1 downto 0);
+architecture Behavioral of EDGEDTCTR is
+    signal sreg : std_logic_vector(2 downto 0);
 begin
     process (reset,clk)
     begin
         if (reset='0') then
-            sync_out <= '0';
-            sreg <="00";
+            sreg<="000";
         elsif rising_edge(clk) then
-            sync_out <= sreg(1);
-            sreg <= sreg(0) & async_in;
+            sreg <= sreg(1 downto 0) & sync_in;
         end if;
     end process;
+
+    edge<= '0' when reset='0' else
+ '1' when sreg="100" else
+ '0';
 end Behavioral;
+

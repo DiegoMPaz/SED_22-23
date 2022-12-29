@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 29.11.2022 15:33:12
+-- Create Date: 29.12.2022 10:45:05
 -- Design Name: 
--- Module Name: synchrnzer - Behavioral
+-- Module Name: Display_Control - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,26 +31,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity synchrnzer is
-    Port (
-        clk:in std_logic;
-        reset:in std_logic;
-        async_in: in std_logic;
-        sync_out:out std_logic
-    );
-end synchrnzer;
+entity Display_Control is
+--  Port ( );
+end Display_Control;
 
-architecture Behavioral of synchrnzer is
-    signal sreg : std_logic_vector(1 downto 0);
+architecture Behavioral of Display_Control is
+
 begin
-    process (reset,clk)
-    begin
-        if (reset='0') then
-            sync_out <= '0';
-            sreg <="00";
-        elsif rising_edge(clk) then
-            sync_out <= sreg(1);
-            sreg <= sreg(0) & async_in;
-        end if;
-    end process;
+
+
 end Behavioral;

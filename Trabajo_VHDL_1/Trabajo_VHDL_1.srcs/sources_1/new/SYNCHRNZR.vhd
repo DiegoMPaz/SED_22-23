@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 29.11.2022 15:33:12
+-- Create Date: 29.12.2022 10:38:12
 -- Design Name: 
--- Module Name: synchrnzer - Behavioral
+-- Module Name: SYNCHRNZR - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,16 +31,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity synchrnzer is
+entity SYNCHRNZR is
     Port (
         clk:in std_logic;
         reset:in std_logic;
         async_in: in std_logic;
         sync_out:out std_logic
     );
-end synchrnzer;
+end SYNCHRNZR;
 
-architecture Behavioral of synchrnzer is
+architecture Behavioral of SYNCHRNZR is
     signal sreg : std_logic_vector(1 downto 0);
 begin
     process (reset,clk)
