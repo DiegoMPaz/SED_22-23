@@ -1,0 +1,3 @@
+Ultrasound.c:16:6:delayT2	16	static
+Ultrasound.c:22:6:HCSR04_Init	8	static
+Ultrasound.c:28:6:HCSR04_Read	8	static
