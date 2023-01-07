@@ -53,7 +53,6 @@ I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi1;
 
-TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
@@ -68,10 +67,9 @@ static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_ADC1_Init(void);
-static void MX_TIM1_Init(void);
-static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
+static void MX_TIM2_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
@@ -82,8 +80,9 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN 0 */
 
 
-int pState = 1, cState = 0, vaciado = 0, t_vaciado = 10, aux1 = 0;	// Estados y variables auxiliares
+int pState = 1, cState = 3, vaciado = 0, t_vaciado = 10, aux1 = 0;	// Estados y variables auxiliares
 volatile int interrupt = 0;
+
 
 volatile int refresh = 0;		// Refresh de la pantalla y sus datos
 
@@ -93,10 +92,12 @@ char pantalla[16];		// Para impresiones por pantalla
 uint8_t RHI, RHD, TCI, TCD, SUM;	// Medidas de temperatura y humedad (DHT11)
 float Temp = 0, RH = 0;
 
-uint16_t AD_RES = 0, Vamb, DC_Multiplier, Lumen, Lmin=2500, Lmax=3800, Ldisplay;	// Medidas LDR
+uint16_t AD_RES = 0, Vamb, DC_Multiplier, Lumen, Lmin=3200, Lmax=3600, Ldisplay;	// Medidas LDR
 
-uint32_t US1, US2, USdiff;			// Medidas del ultrasonidos
-uint8_t Distance, FCapture, Volume;
+
+uint32_t echo1, echo2, period = 0;			// Medidas del ultrasonidos
+float dist, Volume, d1, d2, d3, dmed;
+int Vs = 0, cd = 1;
 
 
 
@@ -107,7 +108,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	ctime = HAL_GetTick();
 	if (GPIO_Pin==GPIO_PIN_0 ) interrupt = 1;
 	else if (GPIO_Pin==GPIO_PIN_3 ) interrupt = 2;
-	else if (GPIO_Pin==GPIO_PIN_0 ) interrupt = 3;
+	else if (GPIO_Pin==GPIO_PIN_4 ) interrupt = 3;
 }
 
 
@@ -144,36 +145,33 @@ int debouncer(volatile int* interrupt, GPIO_TypeDef* GPIO_port, uint16_t GPIO_nu
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)  // if the interrupt source is channel1
+
+	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)  // if the interrupt source is channel 1
 		{
-		if (FCapture==0) // if the first value is not captured
-		{
-			US1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
-			FCapture = 1;  // set the first captured as true
+		if (Vs == 0){ // if the first value is not captured
+
+			echo1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); // read the first value
+			Vs = 1;  // set the first captured as true
 			// Now change the polarity to falling edge
 			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
 		}
 
-		else if (FCapture==1)   // if the first is already captured
-		{
-			US2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
+		else if (Vs == 1){   // if the first is already captured
+
+			echo2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);  // read second value
 			__HAL_TIM_SET_COUNTER(htim, 0);  // reset the counter
 
-			if (US2 > US1)
-			{
-				USdiff = US2 - US1;
+			if (echo2 > echo1){
+				period = echo2 - echo1;
+			}
+			else if (echo1 > echo2){
+				period = (0xffff - echo1) + echo2;
 			}
 
-			else if (US1 > US2)
-			{
-				USdiff = (0xffff - US1) + US2;
-			}
+			Vs = 0; // set it back to false
 
-			Distance = USdiff * .034/2;
-			FCapture = 0; // set it back to false
 			// set polarity to rising edge
 			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
-			__HAL_TIM_DISABLE_IT(&htim2, TIM_IT_CC1);
 		}
 	}
 }
@@ -238,7 +236,6 @@ int main(void)
   MX_SPI1_Init();
   MX_USB_HOST_Init();
   MX_ADC1_Init();
-  MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
@@ -260,10 +257,7 @@ int main(void)
   lcd_send_string("Test");
   lcd_clear();
   HAL_ADC_Start(&hadc1);
-  HAL_TIM_Base_Start(&htim1);
-  HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);
   HAL_TIM_Base_Start_IT(&htim3);
-
   HAL_ADC_Start(&hadc1);
   HAL_ADC_PollForConversion(&hadc1, 1);
 
@@ -281,23 +275,45 @@ int main(void)
       HAL_ADC_PollForConversion(&hadc1, 1);
       Lumen = HAL_ADC_GetValue(&hadc1);
       if (Lumen > Lmax) Lmax = Lumen;
-      if (Lumen < Lmin) Lmin = Lumen;
+      if (Lumen < Lmin && Lumen > 3000) Lmin = Lumen;
+      else if (Lumen < 3000) Lumen = 3050;
+
 
 
 
 	  // Lectura del ultrasonidos
 
-	  HCSR04_Read();
-	  if(abs(Distance-aux1)>15) Distance=(aux1+Distance)/2;
-	  aux1 = Distance;
-	  Volume = Distance * 3.1415 * 1; //Altura del liquido * pi * radio(1)
-	  //if (Volume > 220) cState = 5;
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1);
+      HAL_Delay(10);
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 0);
+
+      HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);
+
+      dist = period/58;
+
+	  switch (cd){
+	  	  case 1:
+	  		  d1 = dist;
+	  		  cd = 2;
+	  		  break;
+	  	  case 2:
+	  		  d2 = dist;
+	  		  cd = 3;
+	  		  break;
+	  	  case 3:
+	  		  d3 = dist;
+	  		  cd = 1;
+	  		  break;
+	  }
+	  dmed = (d1 + d2 + d3)/3;
+	  if (dmed > 100) cState = 5;
+	  Volume = dmed * 3.1415 * 1; //Altura del liquido * pi * radio(1)
 
 
 
 
 	  // Lectura de la temperatura y humedad
-
+/*
 	  if(DHT11_Start()){
 	        RHI = DHT11_Read(); // Relative humidity integral
 	        RHD = DHT11_Read(); // Relative humidity decimal
@@ -309,15 +325,14 @@ int main(void)
 	          RH = (float)RHI + (float)(RHD/10.0);
 	        }
 	   }
-
+*/
 
 
 	  // Control de los estados
 
-
 	  if (interrupt == 1){
 		  if(debouncer(&interrupt, GPIOA, GPIO_PIN_0)){
-			  if (cState == 0){
+			  if (cState == 0){					// Inicio -> Temp
 			  	  		pState = cState;
 			  	  		cState = 1;
 			  	  		ptime = ctime;
@@ -328,13 +343,13 @@ int main(void)
 
 	  if (interrupt == 2){
 		  if(debouncer(&interrupt, GPIOA, GPIO_PIN_3)){
-			   if(cState == 1){				// Temp -> Humedad
+			   if(cState == 1){					// Temp -> Humedad
 			  	  	pState = cState;
 			  	  	cState = 2;
 			  	  	ptime = ctime;
 			  	  	interrupt = 0;
 			   }
-			   else if (cState == 2){		// Humedad -> Volumen
+			   else if (cState == 2){			// Humedad -> Volumen
 			  	  	pState = cState;
 			  	  	cState = 3;
 			  	  	ptime = ctime;
@@ -346,7 +361,7 @@ int main(void)
 			  	  	ptime = ctime;
 			  	  	interrupt = 0;
 			   }
-			   else if(cState == 4 ){		// Lumin -> Temp
+			   else if(cState == 4 ){			// Lumin -> Temp
 			  	  	pState = cState;
 			  	  	cState =1;
 			  	  	ptime = ctime;
@@ -356,21 +371,28 @@ int main(void)
 	  }
 	  if (interrupt == 3){
 		   if(debouncer(&interrupt, GPIOA, GPIO_PIN_4)){
-			  	  if (cState != 6){
+
+			  	  if (cState == 5){				// Alerta -> Vaciado
 			  	  		pState = cState;
 			  	  		cState = 6;
 			  	  		ptime = ctime;
   	  					interrupt = 0;
 			  	  		HAL_TIM_Base_Start_IT(&htim4);
 		  		  	  }
+			  	  else if (cState != 6){		// Vaciado -> Inicio
+			  		  	pState = cState;
+			  		    cState = 5;
+			  			ptime = ctime;
+			  			interrupt = 0;
 		  		  }
-	  	  }
-
-
+		   }
+	  }
 
 
 
 	  // Salida por pantalla
+	  if (HAL_GetTick() - ctime > 500) refresh = 1;
+
 	  if (pState != cState || refresh != 0){
 		  if (pState != cState){
 			  lcd_clear();
@@ -379,6 +401,7 @@ int main(void)
 		  if (cState == 5 || cState == 6) HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);
 
 		  refresh = 0;
+		  ctime = HAL_GetTick();
 		  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
 
 		  if (cState == 0){
@@ -629,52 +652,6 @@ static void MX_SPI1_Init(void)
 }
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM1_Init(void)
-{
-
-  /* USER CODE BEGIN TIM1_Init 0 */
-
-  /* USER CODE END TIM1_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM1_Init 1 */
-
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 71;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 60000;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
-
-  /* USER CODE END TIM1_Init 2 */
-
-}
-
-/**
   * @brief TIM2 Initialization Function
   * @param None
   * @retval None
@@ -696,7 +673,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 71;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 16777215;
+  htim2.Init.Period = 65535;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -910,6 +887,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
   HAL_GPIO_Init(CLK_IN_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PB15 */
+  GPIO_InitStruct.Pin = GPIO_PIN_15;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PD9 LD4_Pin LD3_Pin LD5_Pin
                            LD6_Pin */
   GPIO_InitStruct.Pin = GPIO_PIN_9|LD4_Pin|LD3_Pin|LD5_Pin
@@ -926,6 +911,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;

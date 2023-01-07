@@ -1,7 +1,7 @@
 /*
  * Ultrasound.c
  *
- *  Created on: 18 jun. 2022
+ *  Created on: 18 nov. 2022
  *      Author: Diego
  */
 
@@ -9,7 +9,7 @@
 
 TIM_HandleTypeDef htim2;
 
-#define TRIG_PIN GPIO_PIN_13
+#define TRIG_PIN GPIO_PIN_8
 #define TRIG_PORT GPIOA
 
 
@@ -21,7 +21,7 @@ void delayT2 (uint16_t delay){
 
 void HCSR04_Init(TIM_HandleTypeDef Usound){
 	htim2 = Usound;
-	HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_1);
+	HAL_TIM_IC_Start_IT(&htim2, TIM_CHANNEL_2);
 }
 
 
@@ -30,6 +30,6 @@ void HCSR04_Read (void){
 	delayT2(10);  // wait for 10 us
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN, GPIO_PIN_RESET);  // pull the TRIG pin low
 
-	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_CC1);
+	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_CC2);
 
 }
